@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebCraft 2026 | Modern Web Development Workshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+      html { scroll-behavior: auto; }
+      body {
+        margin: 0;
+        background: #fff;
+        color: #1e293b;
+        font-family: Inter, "Segoe UI", sans-serif;
+      }
+      button:focus, a:focus, input:focus, select:focus, textarea:focus { outline: none; }
+      img { max-width: 100%; }
+
+      header {
+        background: #fff;
+        border-bottom: 4px solid #2563eb;
+      }
+      .bar {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 4px 8px 8px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 16px;
+        margin-right: 8px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .mark {
+        width: 36px;
+        height: 36px;
+        background: #4f46e5;
+        color: #fff;
+        font-weight: 900;
+        font-size: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+      }
+      .logo-name { display: block; font-size: 13px; font-weight: 700; color: #ea580c; line-height: 1.1; }
+      .logo-sub { display: block; font-size: 10px; font-weight: 500; color: #64748b; }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        width: 228px;
+        padding-top: 4px;
+      }
+      nav a { text-decoration: none; white-space: nowrap; }
+      nav .home { font-size: 15px; color: #1d4ed8; margin: 0 4px; }
+      nav .about { font-size: 12px; color: #64748b; margin: 0 12px; }
+      nav .speakers {
+        font-size: 14px;
+        background: #9333ea;
+        color: #fff;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 6px;
+        margin: 0 20px;
+      }
+      nav .schedule {
+        font-size: 18px;
+        color: #15803d;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        margin: 0 4px;
+      }
+      nav .register { font-size: 14px; color: #ef4444; font-weight: 500; margin-left: 32px; }
+      @media (min-width: 760px) {
+        .bar { padding: 4px 20px 8px; }
+        nav { width: auto; }
+      }
+
+      .hero {
+        background: linear-gradient(90deg, #e0f2fe, #fdf4ff 45%, #ecfccb);
+      }
+      .hero-row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 16px 32px 8px;
+      }
+      .hero-copy { min-width: 300px; width: 40%; }
+      .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+      .badge {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 4px 8px;
+      }
+      .b-red { background: #ef4444; }
+      .b-green { background: #16a34a; }
+      .b-orange { background: #f97316; }
+      .b-purple { background: #9333ea; }
+      .b-blue { background: #2563eb; }
+      .seat-note {
+        background: #1e40af;
+        color: #3b82f6;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 8px 12px;
+        margin: 0 0 12px;
+      }
+      .when {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #06b6d4;
+        line-height: 2.2;
+        margin: 0;
+      }
+      h1 {
+        font-size: 36px;
+        font-weight: 900;
+        color: #172554;
+        line-height: 1;
+        margin: 4px 0 0;
+      }
+      .subtitle {
+        font-size: 26px;
+        font-weight: 800;
+        color: #9333ea;
+        line-height: 1.15;
+        margin: 4px 0 0;
+      }
+      .hero-copy .long {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.15;
+        color: #334155;
+        margin: 12px 0 0;
+      }
+      .loud {
+        font-size: 16px;
+        font-weight: 700;
+        color: #d946ef;
+        margin: 12px 0 0;
+      }
+      .cta-row {
+        margin-top: 64px;
+        margin-bottom: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-quiet {
+        background: #e2e8f0;
+        color: #94a3b8;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 4px 8px;
+        border-radius: 2px;
+        text-decoration: none;
+      }
+      .btn-orange {
+        background: #f97316;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 800;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+      }
+      .btn-pill {
+        background: #16a34a;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 999px;
+        text-decoration: none;
+      }
+      .hero-photo { min-width: 440px; flex: 1; padding: 24px 0 0 32px; }
+      .hero-photo img { width: 100%; height: 320px; object-fit: cover; border-radius: 6px; display: block; }
+      .caption { font-size: 10px; text-align: right; color: #94a3b8; margin: 4px 0 0; }
+
+      #about { padding: 8px 32px 64px; background: #f8fafc; }
+      #about h2 {
+        font-size: 30px;
+        font-weight: 900;
+        text-align: center;
+        color: #a21caf;
+        margin: 0;
+      }
+      #about h2.second {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2563eb;
+        margin-top: 4px;
+      }
+      .read-all {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+        color: #ea580c;
+        margin: 4px 0 8px;
+      }
+      .about-intro {
+        font-size: 14px;
+        color: #475569;
+        line-height: 1.35;
+        margin: 0 0 12px;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 8px;
+        row-gap: 32px;
+        align-items: start;
+      }
+      @media (min-width: 980px) {
+        .about-grid { grid-template-columns: repeat(4, 1fr); }
+      }
+      .card p { font-size: 14px; color: #475569; line-height: 1.55; margin: 0; }
+      .card h3 { margin: 0; }
+      .c1 { padding: 8px; border: 1px solid #cbd5e1; background: #fff; border-radius: 0; }
+      .c1 h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+      .c2 { padding: 40px 32px; border-radius: 28px; box-shadow: 0 24px 40px rgba(15, 23, 42, 0.18); background: #fff; text-align: center; margin-top: 24px; }
+      .c2 .kicker { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; color: #ec4899; margin: 0 0 8px; }
+      .c2 h3 { font-size: 24px; font-weight: 900; color: #a21caf; margin-bottom: 12px; }
+      .c3 { padding: 12px; border-radius: 2px; box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.08); background: #fffbeb; text-align: right; margin-top: -8px; }
+      .c3 h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; color: #92400e; margin-top: 20px; }
+      .c4 { padding: 40px; border-radius: 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); background: #fff; margin-top: 12px; margin-left: 16px; }
+      .c4 h3 { font-size: 20px; font-weight: 600; color: #15803d; padding-left: 32px; margin-bottom: 8px; }
+      .c5 { padding: 8px; border-radius: 12px; border: 4px dashed #c084fc; background: #faf5ff; }
+      .c5 h3 { font-size: 16px; font-style: italic; font-weight: 500; color: #581c87; margin-bottom: 4px; }
+      .c6 { padding: 20px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); background: #fff; margin-top: 32px; }
+      .c6 h3 { font-size: 22px; font-weight: 800; color: #1e40af; text-align: center; margin-bottom: 8px; }
+      .c7 { padding: 16px; border-radius: 28px; box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12); background: #fff7ed; }
+      .c7 h3 { font-size: 18px; font-weight: 700; color: #c2410c; text-decoration: underline; margin-bottom: 12px; }
+      .c8 { padding: 24px; border-radius: 8px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06); background: #f7fee7; margin-bottom: 24px; }
+      .c8 h3 { font-size: 18px; font-weight: 900; color: #3f6212; text-transform: uppercase; margin-bottom: 4px; }
+
+      #speakers { padding: 96px 24px 12px; background: #fff; }
+      #speakers h2 { font-size: 18px; font-weight: 500; color: #64748b; margin: 0 0 4px; }
+      .speakers-note { font-size: 12px; color: #94a3b8; max-width: 220px; margin: 0 0 16px; }
+      .speaker-row { display: flex; flex-wrap: nowrap; align-items: flex-start; gap: 16px; }
+      .sp { background: #fff; flex-shrink: 0; }
+      .sp h3 { margin: 0; }
+      .sp .role { margin: 0; }
+      .sp .bio { margin: 0; }
+      .sp a.act { display: inline-block; text-decoration: none; }
+      .sp1 { width: 250px; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+      .sp1 img { width: 56px; height: 56px; object-fit: cover; border-radius: 999px; margin-bottom: 8px; }
+      .sp1 h3 { font-size: 14px; font-weight: 600; }
+      .sp1 .role { font-size: 12px; color: #2563eb; margin-bottom: 8px; }
+      .sp1 .bio { font-size: 12px; color: #475569; line-height: 1.35; }
+      .sp1 .socials { display: flex; gap: 8px; margin-top: 8px; }
+      .sp1 .socials svg { width: 16px; height: 16px; display: block; }
+      .sp1 .act { margin-top: 12px; background: #2563eb; color: #fff; font-size: 14px; padding: 6px 12px; border-radius: 6px; }
+      .sp2 { width: 300px; padding: 32px 24px; border-radius: 28px; box-shadow: 0 24px 40px rgba(15, 23, 42, 0.16); }
+      .sp2 img { width: 144px; height: 144px; object-fit: cover; border-radius: 6px; margin-bottom: 16px; }
+      .sp2 h3 { font-size: 30px; font-weight: 900; color: #6b21a8; line-height: 1; }
+      .sp2 .role { font-size: 18px; font-weight: 700; color: #ea580c; margin: 8px 0 12px; }
+      .sp2 .bio { font-size: 16px; color: #334155; line-height: 1.6; }
+      .sp2 .links { margin-top: 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+      .sp2 .links a { color: #dc2626; text-decoration: underline; font-size: 16px; font-weight: 600; }
+      .sp2 .links a.gh { color: #ea580c; font-size: 12px; text-decoration: none; font-weight: 400; }
+      .sp2 .act { margin-top: 24px; background: #f97316; color: #fff; font-size: 18px; font-weight: 800; padding: 12px 20px; border-radius: 8px; }
+      .sp3 { width: 220px; padding: 8px; border-radius: 0; border: 2px solid #22c55e; margin-top: 24px; }
+      .sp3 img { width: 96px; height: 64px; object-fit: cover; object-position: top; margin-bottom: 4px; }
+      .sp3 h3 { font-size: 18px; font-weight: 500; color: #166534; }
+      .sp3 .role { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #64748b; margin-bottom: 4px; }
+      .sp3 .bio { font-size: 13px; color: #1e293b; line-height: 1.2; }
+      .sp3 .mix { margin-top: 4px; display: flex; gap: 16px; align-items: flex-end; }
+      .sp3 .mix a { text-decoration: none; }
+      .sp3 .mix .in { font-size: 10px; color: #94a3b8; }
+      .sp3 .mix .gh { font-size: 18px; color: #16a34a; font-weight: 900; line-height: 1; }
+      .sp3 .act { margin-top: 4px; background: #84cc16; color: #000; font-size: 12px; font-weight: 700; padding: 8px; border-radius: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+      #learn { padding: 4px 32px 8px; }
+      #learn h2 { font-size: 48px; font-weight: 900; color: #dc2626; text-align: center; line-height: 1; margin: 0; }
+      .learn-lead { text-align: center; font-size: 18px; font-weight: 700; color: #2563eb; margin: 8px 0 0; }
+      .learn-aside { font-size: 12px; color: #64748b; max-width: 320px; margin: 8px auto 16px; text-align: center; line-height: 1.6; }
+      .learn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      @media (min-width: 1100px) {
+        .learn-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      .learn-grid article { padding: 12px; }
+      .learn-grid h3 { font-size: 20px; font-weight: 900; line-height: 1.15; margin: 0 0 4px; }
+      .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+      .chip { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: rgba(255,255,255,0.7); color: #1e293b; padding: 2px 6px; }
+      .learn-grid .time { font-size: 11px; font-weight: 600; margin: 0 0 8px; opacity: 0.9; }
+      .learn-grid .body { font-size: 14px; line-height: 1.35; margin: 0 0 8px; }
+      .learn-grid ul { font-size: 12px; line-height: 1.25; margin: 0 0 12px; padding-left: 16px; }
+      .learn-grid li { margin-bottom: 4px; }
+      .lc1 { background: #2563eb; color: #fff; border-radius: 6px; box-shadow: 0 10px 18px rgba(37, 99, 235, 0.25); }
+      .lc1 .go { background: #fff; color: #1d4ed8; font-size: 12px; font-weight: 700; padding: 4px 8px; border-radius: 999px; text-decoration: none; }
+      .lc2 { background: #020617; color: #dcfce7; border: 1px solid #22c55e; border-radius: 0; }
+      .lc2 .mark { color: #4ade80; background: transparent; width: auto; height: auto; font-size: 18px; }
+      .lc2 .go { background: #22c55e; color: #000; font-size: 11px; font-weight: 900; padding: 8px 12px; text-decoration: none; }
+      .lc3 { background: #fbcfe8; color: #500724; border-radius: 28px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
+      .lc3 .go { background: #db2777; color: #fff; font-size: 14px; padding: 4px 16px; border-radius: 8px; font-weight: 600; text-decoration: none; }
+      .lc4 { background: #fbbf24; color: #451a03; border-radius: 8px; }
+      .lc4 .go { background: #dc2626; color: #fff; font-size: 12px; padding: 8px; text-transform: uppercase; text-decoration: none; }
+      .lc5 { background: #065f46; color: #ecfdf5; border-radius: 2px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.2); }
+      .lc5 .go { background: #a7f3d0; color: #064e3b; font-size: 14px; font-weight: 700; padding: 4px 12px; border-radius: 999px; text-decoration: none; }
+      .lc6 { background: #e9d5ff; color: #3b0764; border-radius: 16px; border: 2px solid #f97316; }
+      .lc6 .go { background: #7e22ce; color: #fef08a; font-size: 12px; font-weight: 900; padding: 8px 20px; text-decoration: none; }
+
+      #schedule { margin-top: 64px; padding: 32px; background: #f7fee7; }
+      #schedule h2 { font-size: 24px; font-family: Georgia, serif; color: #15803d; text-decoration: underline; display: inline; margin: 0; }
+      .day { font-size: 14px; font-weight: 600; color: #166534; margin: 8px 0 16px; }
+      .timeline { min-width: 720px; background: rgba(255,255,255,0.7); border: 1px solid #d9f99d; }
+      .r1 { display: flex; align-items: baseline; gap: 8px; padding: 4px 4px 4px 4px; }
+      .r1 .t { width: 40px; flex-shrink: 0; font-size: 12px; color: #3b82f6; }
+      .r1 .n { font-size: 16px; font-weight: 700; }
+      .r1 .d { font-size: 11px; color: #94a3b8; }
+      .r2 { display: flex; align-items: center; justify-content: center; gap: 12px; background: #ffedd5; padding: 16px; margin: 12px 24px; border-radius: 999px; }
+      .r2 .t { font-size: 14px; color: #fdba74; }
+      .r2 .n { font-size: 24px; font-weight: 900; color: #ea580c; }
+      .r3 { display: flex; flex-direction: row-reverse; align-items: flex-start; justify-content: space-between; background: #fff; border: 1px dashed #c084fc; padding: 8px 12px; margin-bottom: 4px; }
+      .r3 .t { font-size: 18px; font-family: Georgia, serif; color: #7e22ce; }
+      .r3 .n { font-size: 14px; color: #581c87; text-align: right; }
+      .r3 .d { font-size: 12px; color: #d8b4fe; max-width: 140px; text-align: right; line-height: 1.2; }
+      .r4 { display: block; background: #15803d; color: #fff; padding: 12px 20px; margin: 16px 8px 16px 40px; }
+      .r4 .t { display: block; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #bbf7d0; }
+      .r4 .n { display: block; font-size: 20px; font-weight: 700; }
+      .r4 .d { display: block; font-size: 14px; color: #dcfce7; margin-top: 4px; }
+      .r5 { display: flex; align-items: center; gap: 32px; padding: 24px 24px 24px 48px; }
+      .r5 .t { font-size: 30px; font-weight: 900; color: #ef4444; width: 112px; }
+      .r5 .n { font-size: 30px; font-weight: 900; color: #ef4444; }
+      .r5 .d { font-size: 14px; color: #fca5a5; }
+      .r6 { display: flex; align-items: baseline; gap: 4px; padding: 8px 0; }
+      .r6 .t { width: 64px; font-family: ui-monospace, monospace; font-size: 14px; color: #64748b; }
+      .r6 .n { font-size: 13px; color: #475569; }
+      .r6 .d { font-size: 12px; color: #94a3b8; margin-left: 8px; }
+      .r7 { display: flex; align-items: center; gap: 8px; background: #f1f5f9; padding: 4px 8px; }
+      .r7 .t { font-size: 10px; color: #94a3b8; width: 32px; }
+      .r7 .n { font-size: 12px; color: #64748b; }
+      .r7 .d { font-size: 10px; color: #94a3b8; }
+      .r8 { text-align: right; padding: 8px 16px 32px 0; }
+      .r8 .t { font-size: 16px; font-style: italic; color: #1e40af; margin-right: 12px; }
+      .r8 .n { font-size: 18px; font-family: Georgia, serif; text-decoration: underline; color: #1e40af; }
+      .r8 .d { display: block; font-size: 11px; color: #64748b; margin-top: 4px; }
+      .fine { font-size: 10px; color: rgba(63, 98, 18, 0.45); margin: 8px 0 0; max-width: 380px; }
+
+      #register { padding: 8px 32px 80px; }
+      #register h2 { font-size: 16px; font-weight: 400; color: #94a3b8; margin: 0; }
+      .reg-note { font-size: 24px; font-weight: 900; color: #ea580c; line-height: 1.15; max-width: 640px; margin: 0; }
+      .reg-hint { font-size: 11px; color: #94a3b8; margin: 4px 0 16px; }
+      .reg-hint a { color: #2563eb; }
+      form.reg {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 12px;
+        row-gap: 4px;
+        max-width: 760px;
+      }
+      form.reg label { display: block; }
+      form.reg label span { display: block; }
+      form.reg input, form.reg textarea, form.reg select {
+        margin-top: 4px;
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        padding: 6px 8px;
+        font: inherit;
+        font-size: 14px;
+        background: #fff;
+      }
+      .span2 { grid-column: span 2; }
+      .lbl { font-size: 12px; color: #64748b; }
+      .why-lbl { font-size: 14px; font-weight: 700; color: #1e293b; margin-top: 24px; }
+      .pw-lbl { font-size: 12px; color: #7e22ce; font-weight: 600; }
+      .star { color: #ef4444; }
+      .star2 { color: #fb923c; }
+      .pw-hint { font-size: 9px; color: #cbd5e1; }
+      .mail-lbl { font-size: 10px; color: #cbd5e1; }
+      .mail-field { margin-bottom: 28px; }
+      .num { margin-left: 24px; }
+      .num input { width: 112px; }
+      .confirm { margin-top: 32px; }
+      .college input { background: #f8fafc; padding: 8px; }
+      .lower { font-size: 12px; text-transform: lowercase; color: #64748b; }
+      fieldset { border: 0; margin: 0; padding: 0; grid-column: span 2; }
+      legend { font-size: 10px; color: #94a3b8; }
+      .langs { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+      .lang {
+        border: 0;
+        color: #fff;
+        font-size: 12px;
+        padding: 4px 8px;
+        background: #fb923c;
+        cursor: pointer;
+      }
+      .lang.on { background: #f97316; }
+      .lang.cpp { font-size: 14px; padding: 8px 16px; }
+      .batch span { font-size: 11px; color: #64748b; }
+      .addr span, .course-lbl { font-size: 12px; }
+      .course { margin-top: 8px; }
+      .course span { color: #15803d; font-weight: 500; font-size: 14px; }
+      .course input { border-color: #4ade80; }
+      .social span { font-size: 12px; color: #475569; }
+      .gh span { font-size: 12px; color: #c7d2fe; }
+      .gh input { background: #312e81; color: #a5b4fc; border-color: #3730a3; }
+      .gh input::placeholder { color: #4338ca; }
+      .err-top { grid-column: span 2; font-size: 12px; color: #fca5a5; margin: 0 0 4px; }
+      .err-faint { font-size: 10px; color: #fecaca; }
+      .err-no { font-size: 12px; color: #94a3b8; }
+      input.bad { border-color: #ef4444; }
+      .done { grid-column: span 2; font-size: 10px; color: #d4d4d4; margin: 0; }
+      .actions { grid-column: span 2; display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 8px; }
+      .reset {
+        background: none;
+        border: 0;
+        font-size: 12px;
+        color: #94a3b8;
+        cursor: pointer;
+      }
+      .submit-link {
+        background: none;
+        border: 0;
+        font-size: 14px;
+        color: #1d4ed8;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .click-here {
+        background: #16a34a;
+        color: #fff;
+        border: 0;
+        font-size: 16px;
+        font-weight: 700;
+        padding: 8px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      #stories { padding: 0 32px 8px; background: #f1f5f9; }
+      #stories h2 { font-size: 36px; font-style: italic; font-family: Georgia, serif; color: #f97316; margin: 0 0 4px; }
+      .stories-note { font-size: 12px; color: #64748b; margin: 0 0 20px; }
+      .story-row { display: flex; flex-wrap: nowrap; align-items: flex-start; gap: 20px; }
+      figure { margin: 0; background: #fff; flex-shrink: 0; }
+      .q1 { width: 230px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 2px; }
+      .q1 blockquote { font-size: 12px; font-style: italic; color: #475569; margin: 0; line-height: 1.35; }
+      .q2 { width: 420px; padding: 24px 32px; border-radius: 28px; box-shadow: 0 20px 30px rgba(0,0,0,0.12); }
+      .q2 .bigq { font-size: 60px; line-height: 1; color: #fb923c; font-family: Georgia, serif; }
+      .q2 blockquote { font-size: 18px; font-weight: 500; color: #1e293b; line-height: 1.6; margin: 0; }
+      .q3 { width: 280px; padding: 20px; border-radius: 8px; background: #f5f3ff; margin-top: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+      .q3 blockquote { font-size: 14px; color: #4c1d95; line-height: 1.6; margin: 0; }
+      figcaption { display: flex; align-items: center; }
+      .q1 figcaption { gap: 8px; margin-top: 12px; }
+      .q1 img { width: 24px; height: 24px; border-radius: 999px; object-fit: cover; }
+      .q1 .who { font-size: 12px; font-weight: 600; display: block; }
+      .q1 .meta { font-size: 10px; color: #94a3b8; display: block; }
+      .q2 figcaption { gap: 16px; margin-top: 24px; }
+      .q2 img { width: 72px; height: 72px; border-radius: 6px; object-fit: cover; }
+      .q2 .who { font-size: 24px; font-weight: 900; color: #ea580c; display: block; }
+      .q2 .meta { font-size: 14px; color: #64748b; display: block; margin-top: 4px; }
+      .q3 figcaption { gap: 12px; margin-top: 16px; }
+      .q3 img { width: 40px; height: 40px; border-radius: 999px; object-fit: cover; }
+      .q3 .who { font-family: Georgia, serif; font-size: 16px; color: #5b21b6; display: block; }
+      .q3 .meta { font-size: 12px; color: #a78bfa; display: block; }
+
+      #faq { margin-top: 56px; margin-bottom: 24px; padding: 0 40px; }
+      #faq h2 { font-size: 20px; font-weight: 700; color: #1e40af; margin: 0 0 4px; }
+      .faq-note { font-size: 12px; color: #94a3b8; max-width: 320px; line-height: 1.6; margin: 0 0 20px; }
+      .faq-list { max-width: 760px; }
+      .faq-item { border-bottom: 1px solid #e2e8f0; padding: 8px 0; }
+      .faq-item:hover { background: #f8fafc; }
+      .faq-q { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; cursor: pointer; }
+      .faq-q p { margin: 0; font-size: 15px; font-weight: 600; color: #1e293b; }
+      .faq-toggle { background: none; border: 0; cursor: default; flex-shrink: 0; }
+      .i1 { font-size: 14px; color: #64748b; width: 16px; }
+      .i2 { font-size: 18px; color: #2563eb; }
+      .i3 { font-size: 12px; font-family: ui-monospace, monospace; color: #334155; background: #e2e8f0; padding: 4px 8px; }
+      .i4 { font-size: 16px; color: #a855f7; padding: 0 12px; }
+      .i5 { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #15803d; border: 1px solid #15803d; padding: 0 4px; }
+      .i6 { font-size: 24px; color: #ef4444; line-height: 1; }
+      .i7 { font-size: 20px; color: #f59e0b; }
+      .faq-a { margin: 4px 0 0; font-size: 14px; }
+      .a1, .a2 { color: #94a3b8; }
+      .a3 { color: #475569; }
+      .a4 { color: #d8b4fe; }
+      .a5 { font-size: 11px; color: #94a3b8; line-height: 1.2; }
+      .a6 { color: #334155; background: #fef2f2; padding: 8px; }
+      .a7 { color: #94a3b8; font-style: italic; }
+
+      footer { background: #0f172a; color: #fff; margin-top: 8px; }
+      .foot {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 56px;
+        padding: 16px 40px 32px;
+      }
+      .f-logo { margin-top: 40px; min-width: 140px; }
+      .f-logo a { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #67e8f9; font-size: 14px; font-weight: 600; }
+      .f-mark { width: 32px; height: 32px; border-radius: 999px; background: #f97316; color: #0f172a; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; }
+      .f-logo p { font-size: 10px; color: #64748b; line-height: 1.3; margin: 8px 0 0; }
+      .f-links { min-width: 160px; }
+      .f-links h2 { font-size: 24px; font-weight: 900; color: #fb923c; margin: 0; }
+      .f-links ul { list-style: none; margin: 4px 0 0; padding: 0; font-size: 10px; color: #fef08a; line-height: 2; }
+      .f-links a { color: inherit; text-decoration: none; }
+      .f-contact { margin-left: 24px; padding-top: 4px; min-width: 180px; }
+      .f-contact h2 { font-size: 12px; font-weight: 300; letter-spacing: 0.35em; color: #67e8f9; margin: 0; }
+      .f-contact .mail { font-size: 14px; color: #64748b; margin: 12px 0 0; }
+      .f-contact .phone { font-size: 12px; color: #f472b6; margin: 8px 0 0; }
+      .f-contact .addr { font-size: 11px; color: #94a3b8; margin: 8px 0 0; line-height: 1.5; }
+      .f-social { padding-top: 32px; min-width: 140px; }
+      .f-social h2 { font-size: 16px; font-weight: 700; color: #a3e635; margin: 0 0 12px; }
+      .f-social .row { display: flex; align-items: flex-end; gap: 12px; }
+      .f-social a { text-decoration: none; }
+      .ig { font-size: 24px; font-weight: 900; color: #ec4899; line-height: 1; }
+      .li { font-size: 10px; color: #60a5fa; text-decoration: underline; }
+      .ghb { font-size: 14px; background: #22c55e; color: #000; font-weight: 700; padding: 0 4px; }
+      .f-news { min-width: 220px; margin-top: -4px; }
+      .f-news h2 { font-family: Georgia, serif; font-size: 18px; font-weight: 400; color: #f87171; margin: 0; }
+      .f-news p { font-size: 10px; color: #94a3b8; margin: 0 0 8px; line-height: 1.3; }
+      .news-row { display: flex; align-items: center; gap: 4px; }
+      .news-row input { width: 112px; background: #1e293b; color: #e2e8f0; border: 0; font-size: 12px; padding: 4px; }
+      .news-row input::placeholder { color: #475569; }
+      .news-row button { background: #ef4444; color: #fff; border: 0; font-size: 11px; padding: 4px 8px; cursor: pointer; }
+      .sent { font-size: 10px; color: #334155; margin: 4px 0 0; }
+      .copy { padding: 0 40px 16px; font-size: 10px; color: #475569; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="bar">
+        <a class="logo" href="#home">
+          <span class="mark">W</span>
+          <span>
+            <span class="logo-name">WebCraft</span>
+            <span class="logo-sub">2026 workshop</span>
+          </span>
+        </a>
+        <nav>
+          <a class="home" href="#home">Home</a>
+          <a class="about" href="#about">About</a>
+          <a class="speakers" href="#speakers">Speakers</a>
+          <a class="schedule" href="#schedule">Schedule</a>
+          <a class="register" href="#register">Register</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-row">
+          <div class="hero-copy">
+            <div class="badges">
+              <span class="badge b-red">NEW</span>
+              <span class="badge b-green">CERTIFICATE</span>
+              <span class="badge b-orange">₹499</span>
+              <span class="badge b-purple">40 SEATS</span>
+              <span class="badge b-blue">BENGALURU</span>
+            </div>
+            <p class="seat-note">Seats are limited to 40. Register only if you can stay until 4:00 PM.</p>
+            <p class="when">Saturday, 24 October 2026 · Seminar Hall 2 · Aether Institute of Technology</p>
+            <h1>WebCraft 2026</h1>
+            <p class="subtitle">Learn how to build modern websites that people actually enjoy using.</p>
+            <p class="long">
+              WebCraft is a one-day workshop for students who can already put a page on the screen and now want that page to feel obvious, calm, and easy to finish. You will spend the morning looking at a live website and naming what gets in the way, then spend the afternoon changing one section until a new visitor can tell what the page is for and what to do next. Bring a laptop. Lunch is in the hall. The certificate is emailed later, after you submit a before-and-after screenshot. Friends from other colleges are welcome, and so are students who have only built one project so far, as long as you are comfortable editing a page and reading a stylesheet. We start at the registration desk, not in the cafeteria.
+            </p>
+            <p class="loud">Free certificate · lunch included · Wi-Fi on the desk slip · please carry a charger</p>
+            <div class="cta-row">
+              <a class="btn-quiet" href="#register">Register Now</a>
+              <a class="btn-orange" href="#about">Explore Workshop</a>
+              <a class="btn-pill" href="#speakers">Click Here</a>
+            </div>
+          </div>
+          <div class="hero-photo">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80"
+              alt="image"
+            />
+            <p class="caption">photo: students in a lab</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>About the Workshop</h2>
+        <h2 class="second">Important information</h2>
+        <p class="read-all">Please read everything before you register</p>
+        <p class="about-intro">
+          WebCraft started in 2024 as a Saturday lab for students who were shipping project websites that worked and still felt tiring to use. The 2026 workshop keeps that aim. You will not collect a stack of new frameworks. You will practise a few decisions that change how a page feels: what the page is about, what the eye should meet first, which action matters, how type and spacing show that two things belong together, and what should happen after someone clicks. The notes below cover the day itself, the room, the fee, the certificate, what to bring, how refunds work, where to park, and how we expect people to behave in the hall. Read them once before you fill the form so the desk is not repeating them at 8:45.
+        </p>
+        <div class="about-grid">
+          <article class="card c1">
+            <h3>What WebCraft is</h3>
+            <p>A one-day practice session in looking at a website and making it easier to use. You already know how to build. This workshop is about deciding what a visitor should notice first, what can wait, and what should be taken off the page.</p>
+          </article>
+          <article class="card c2">
+            <p class="kicker">PLEASE NOTE</p>
+            <h3>Who should attend</h3>
+            <p>Second-year and third-year students in CS, IT, or design who have finished at least one website. Faculty may sit in. You do not need a design portfolio. You should be able to change the page without breaking it.</p>
+          </article>
+          <article class="card c3">
+            <p>Saturday, 24 October 2026, 9:00 AM to 4:00 PM. The hall opens at 8:30. Please be in your seat before the 10:00 session. If the project challenge runs long, we close by 4:15.</p>
+            <h3>Duration</h3>
+          </article>
+          <article class="card c4">
+            <h3>Location</h3>
+            <p>Seminar Hall 2, Aether Institute of Technology, 18 Lakeview Road, Bengaluru 560001. Use Gate B, stairs to the first floor, hall on the left after the notice board. Two-wheelers park beside Gate B. Cars use the basement, which is full by 8:50 on Saturdays, so leave earlier if you are driving. The nearest metro is Cubbon Park, about a twelve-minute walk if you exit toward the post office and not toward the park. Autos from the metro gate usually ask for the institute by the old name, Aether IT. Tell them Gate B. Do not enter through the hostel gate; that path does not connect to the hall on weekends. A printed map is on the registration desk, and a volunteer in a blue lanyard stands at the stairwell until 9:20.</p>
+          </article>
+          <article class="card c5">
+            <h3>Certification</h3>
+            <p>A certificate of participation from the Department of Computer Science if you stay for the project challenge and send a before-and-after screenshot by 4:00 PM. It is not a graded credit and it is not a professional licence. PDFs go out within three weeks.</p>
+          </article>
+          <article class="card c6">
+            <h3>What to carry</h3>
+            <p>Laptop, charger, student ID, a notebook, a bottle of water, and the UPI app you will pay with. A mouse is optional. Headphones help during the challenge hour if the hall is loud. Extension boards are useful if your battery is weak. Please do not bring a desktop. A tablet will not be enough for the afternoon. If your laptop needs a repair, borrow one the day before; we cannot install tools for you at the desk.</p>
+          </article>
+          <article class="card c7">
+            <h3>Fee, lunch, and refunds</h3>
+            <p>₹499 at the desk, cash or UPI, on the morning itself. Online payment is not open. Lunch is vegetarian, with an egg option if you mention it when you pay. Tea at 11:15 and 15:15. Refunds until 17 October if you email webcraft@aether.edu.in. After that we can move the seat to another student once. The form on this page holds your interest; it does not confirm the seat until the desk has taken the fee and there is still room in the hall of 40.</p>
+          </article>
+          <article class="card c8">
+            <h3>While you are in the hall</h3>
+            <p>Wi-Fi name and password are on the slip you get at 9:00. Please do not stream video. Questions during a session go to the speaker; questions about certificates go to the desk at tea. The hashtag, if you post, is #WebCraft2026. Tag the department only if your post shows your own work. Keep the aisles clear. The code of conduct is the institute's student code: be on time, let other people finish a point, and do not share someone else's screen without asking.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="speakers">
+        <h2>Speakers</h2>
+        <p class="speakers-note">Three practitioners from the city. Sessions are in the same hall, one after another.</p>
+        <div class="speaker-row">
+          <article class="sp sp1">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="photo" />
+            <h3>Ananya Rao</h3>
+            <p class="role">Frontend Engineer</p>
+            <p class="bio">Ananya builds design systems for a product studio in Bengaluru and will lead the morning critique.</p>
+            <div class="socials">
+              <a href="https://www.linkedin.com" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="#2563eb" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.8v2.1h.05c.53-1 1.84-2.1 3.79-2.1 4.05 0 4.8 2.67 4.8 6.14V24h-4v-7.7c0-1.84-.03-4.2-2.56-4.2-2.56 0-2.95 2-2.95 4.06V24h-4V8.5z"/></svg>
+              </a>
+              <a href="https://github.com">
+                <svg viewBox="0 0 24 24" fill="#1e293b" aria-hidden="true"><path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.7 1.8 2.8 1.3.1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C16.9 4.7 18 5 18 5c.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.3.8 1 .8 2.1v3.1c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+              </a>
+            </div>
+            <a class="act" href="#register">View profile</a>
+          </article>
+          <article class="sp sp2">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="image" />
+            <h3>Rahul Menon</h3>
+            <p class="role">Product Designer</p>
+            <p class="bio">Rahul spends his week in critiques with early-stage teams. In the afternoon he will walk the room while you rebuild one section, and he will ask you why a visitor should trust the next click. He previously taught a short module on forms at a city college and still thinks most forms ask for a phone number they never use.</p>
+            <div class="links">
+              <a href="https://www.linkedin.com">LinkedIn</a>
+              <a class="gh" href="https://github.com">github.com</a>
+            </div>
+            <a class="act" href="#register">Click Here</a>
+          </article>
+          <article class="sp sp3">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80" alt="" />
+            <h3>Arjun Kumar</h3>
+            <p class="role">Full Stack Developer</p>
+            <p class="bio">Arjun will run the project challenge and the short note on making a page hold together when the window gets narrower.</p>
+            <div class="mix">
+              <a class="in" href="https://www.linkedin.com">in</a>
+              <a class="gh" href="https://github.com">GH</a>
+            </div>
+            <a class="act" href="#register">More</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="learn">
+        <h2>What You'll Learn</h2>
+        <p class="learn-lead">Six themes. All of them matter. None of them is optional.</p>
+        <p class="learn-aside">The day is one workshop, not six courses. The cards are here so you can see the ground we will cover. You do not need to master a topic before you arrive.</p>
+        <div class="learn-grid">
+          <article class="lc1">
+            <div class="top"><span>●</span><span class="chip">Module 1</span></div>
+            <h3>React</h3>
+            <p class="time">45 minutes · also used all afternoon</p>
+            <p class="body">You will open a component and trace what a visitor actually sees. Props, a bit of state, and a list are enough. We use them to talk about why a section is hard to change, not to start a new app.</p>
+            <ul>
+              <li>Reading markup without rewriting it</li>
+              <li>Why six actions in one card tire people</li>
+              <li>Keeping a shared block when the styles disagree</li>
+            </ul>
+            <a class="go" href="#register">Click Here</a>
+          </article>
+          <article class="lc2">
+            <div class="top"><span class="mark">▣</span><span class="chip">Lab note</span></div>
+            <h3>Next.js</h3>
+            <p class="time">Reference only</p>
+            <p class="body">The sample site is one page of sections. You will see how a link in the bar and a link in the hero can point at the same form, and why that still fails if the form does not look like the next step.</p>
+            <ul>
+              <li>One page and a shared header</li>
+              <li>Links that move you down the page</li>
+              <li>What belongs together</li>
+            </ul>
+            <a class="go" href="#schedule">Details</a>
+          </article>
+          <article class="lc3">
+            <div class="top"><span>★</span><span class="chip">Core</span></div>
+            <h3>UI/UX</h3>
+            <p class="time">The whole morning</p>
+            <p class="body">Hierarchy, grouping, and the path from the first screen to a completed registration. You will practise saying what the page is for in one sentence, then checking whether the page says the same thing.</p>
+            <ul>
+              <li>What should be seen first</li>
+              <li>What a person is trying to finish</li>
+              <li>What you can remove without losing the day</li>
+            </ul>
+            <a class="go" href="#about">Start</a>
+          </article>
+          <article class="lc4">
+            <div class="top"><span>▭</span><span class="chip">Challenge</span></div>
+            <h3>Responsive Design</h3>
+            <p class="time">2:00 PM block</p>
+            <p class="body">A layout that feels fine on a laptop can fall apart when the window gets narrower. You will try the page at a phone width and fix the places that should stack, wrap, or simply have less padding.</p>
+            <ul>
+              <li>Columns that never stack</li>
+              <li>Type that becomes hard to read</li>
+              <li>Rows that force sideways scrolling</li>
+            </ul>
+            <a class="go" href="#schedule">Open</a>
+          </article>
+          <article class="lc5">
+            <div class="top"><span>◐</span><span class="chip">Woven through</span></div>
+            <h3>Accessibility</h3>
+            <p class="time">Not a separate hour</p>
+            <p class="body">Contrast, names on controls, labels that say what to type, and focus that a keyboard user can see. These are part of the same critique, not a checklist you bolt on after the colours are chosen.</p>
+            <ul>
+              <li>Text you can actually read</li>
+              <li>Controls with plain names</li>
+              <li>Errors that are not colour alone</li>
+            </ul>
+            <a class="go" href="#register">Click Here</a>
+          </article>
+          <article class="lc6">
+            <div class="top"><span>⚡</span><span class="chip">Short note</span></div>
+            <h3>Performance</h3>
+            <p class="time">10 minutes inside fundamentals</p>
+            <p class="body">We will not tune a bundle. We will notice when a page feels heavy because every block shouts, every card has a badge, and the photograph is larger than the task. Perceived effort counts here too.</p>
+            <ul>
+              <li>Large images</li>
+              <li>Too many competing blocks</li>
+              <li>A first screen that takes work to parse</li>
+            </ul>
+            <a class="go" href="#home">Go</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="schedule">
+        <h2>Schedule</h2>
+        <p class="day">Saturday 24 October · arrive by 8:45 · the order below is the day</p>
+        <div class="timeline">
+          <div class="r1"><span class="t">09:00</span><span class="n">Registration</span><span class="d">desk by the door, badge, fee, wifi slip, find a seat</span></div>
+          <div class="r2"><span class="t">10:00 AM</span><span class="n">Web Development Fundamentals</span></div>
+          <div class="r3">
+            <span class="t">11 am</span>
+            <span class="n">UI/UX Analysis</span>
+            <span class="d">Look at a live page and say what you would fix first.</span>
+          </div>
+          <div class="r4">
+            <span class="t">12:00</span>
+            <span class="n">Hands-on Workshop</span>
+            <span class="d">You change one screen. A new student should know what the page is, what matters on it, and what to do next, without reading a long paragraph.</span>
+          </div>
+          <div class="r5"><span class="t">1:00 PM</span><span class="n">Lunch</span><span class="d">in the hall</span></div>
+          <div class="r6"><span class="t">14:00</span><span class="n">Responsive Design</span><span class="d">narrow the window and repair what breaks</span></div>
+          <div class="r7"><span class="t">3 PM</span><span class="n">Project Challenge</span><span class="d">submit the screenshot before you leave</span></div>
+          <div class="r8"><span class="t">04:00</span><span class="n">Closing</span><span class="d">what to keep practising next week</span></div>
+        </div>
+        <p class="fine">Times are when each block starts. We have not printed end times. Tea sits inside the late morning and the afternoon.</p>
+      </section>
+
+      <section id="register">
+        <h2>Registration</h2>
+        <p class="reg-note">Note: submitting this form does not by itself confirm a seat. Pay ₹499 at the desk.</p>
+        <p class="reg-hint">All fields mandatory. Password must be 8 characters. Already registered? <a href="#register">Click Here</a></p>
+        <form class="reg" id="reg-form" novalidate>
+          <p class="err-top" id="form-status" hidden>check fields</p>
+          <p class="done" id="form-done" hidden>Done</p>
+
+          <label class="span2">
+            <span class="lbl">Full Name</span>
+            <input name="name" id="name" />
+            <span class="err-faint" id="name-err" hidden>Error</span>
+          </label>
+
+          <label class="span2">
+            <span class="why-lbl">why do you want to attend this workshop please explain in detail your expectations and what you hope to learn and also your project idea if you have one right now</span>
+            <textarea name="why" rows="4"></textarea>
+          </label>
+
+          <label>
+            <span class="pw-lbl">Create a password (for the portal) <span class="star">*</span></span>
+            <input type="password" name="password" id="password" />
+            <span class="pw-hint">at least 8 characters</span>
+            <span class="err-faint" id="pw-err" hidden>Error</span>
+          </label>
+
+          <label class="mail-field">
+            <span class="mail-lbl">mail</span>
+            <input type="text" name="email" id="email" placeholder="enter email" />
+          </label>
+
+          <label class="num">
+            <span class="lbl">Number</span>
+            <input type="text" name="phone" placeholder="phone" />
+          </label>
+
+          <label class="confirm">
+            <span>Confirm Password <span class="star2">*</span></span>
+            <input type="password" name="confirm" id="confirm" />
+            <span class="err-no" id="confirm-err" hidden>no</span>
+          </label>
+
+          <label class="span2 college">
+            <span class="lower">college name</span>
+            <input name="college" />
+          </label>
+
+          <fieldset>
+            <legend>pick one</legend>
+            <div class="langs" id="langs">
+              <button type="button" class="lang" data-lang="JavaScript">JavaScript</button>
+              <button type="button" class="lang on" data-lang="Python">Python</button>
+              <button type="button" class="lang" data-lang="Java">Java</button>
+              <button type="button" class="lang cpp" data-lang="C++">C++</button>
+              <button type="button" class="lang" data-lang="Other">Other</button>
+            </div>
+          </fieldset>
+
+          <label class="batch">
+            <span>batch</span>
+            <select name="year">
+              <option value="">Select</option>
+              <option>1st year</option>
+              <option>2nd year</option>
+              <option>3rd year</option>
+              <option>4th year</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label class="addr">
+            <span>addr.</span>
+            <textarea name="address" rows="2"></textarea>
+          </label>
+
+          <label class="course">
+            <span class="course-lbl">stream/branch??</span>
+            <input name="course" placeholder="e.g. B.Tech CSE" />
+          </label>
+          <div></div>
+
+          <label class="span2 social">
+            <span>Social <span class="star">*</span></span>
+            <input name="linkedin" placeholder="https://" />
+          </label>
+
+          <label class="gh">
+            <span>gh</span>
+            <input name="github" placeholder="username" />
+          </label>
+
+          <div class="actions">
+            <button class="reset" type="reset" id="reset-btn">Reset</button>
+            <button class="submit-link" type="submit">Submit</button>
+            <button class="click-here" type="submit">Click Here</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="stories">
+        <h2>What people said</h2>
+        <p class="stories-note">From the 2025 workshop. Lightly shortened.</p>
+        <div class="story-row">
+          <figure class="q1">
+            <blockquote>I finally understood why my project page felt crowded. One afternoon of looking carefully was worth more than another tutorial.</blockquote>
+            <figcaption>
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="pic" />
+              <span><span class="who">Priya Shah</span><span class="meta">3rd year, CSE</span></span>
+            </figcaption>
+          </figure>
+          <figure class="q2">
+            <span class="bigq">“</span>
+            <blockquote>I was not sure a full Saturday was going to be different from the playlists I already had open, so I almost skipped it. I am glad I did not. The bus got me to Gate B at 8:40, the desk took the fee on UPI, and the wifi slip actually worked. Ananya started by asking us not to touch the code for the first hour. That felt strange because I had come ready to install things. We looked at one website and wrote down what felt wrong, and the room did not agree. I thought the colours were the problem. The person next to me thought the form was the problem. Rahul kept asking what the page was for, and I did not have a clean answer. At lunch I sat with two students from another college and we argued about whether the schedule should be a table. I still think it should be a table. In the afternoon I rebuilt the top of the page and deleted a paragraph I had been proud of. Arjun looked at the narrow window and pointed at a row that would not stack, and I had used the same kind of row on my project the week before. I missed the 3:15 tea because I was still cropping a screenshot. The certificate mail came nineteen days later. I have since changed the homepage of our college fest site, and my friend Rohan, who did not attend, asked me why the register link was suddenly boring and large. I told him that was the point. If you are deciding whether to spend ₹499 and a Saturday, spend it. Bring a charger. Eat the lunch. Do not arrive planning to leave at noon, because the useful part is the part where your own screen is wrong in a way you can now see.</blockquote>
+            <figcaption>
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="image" />
+              <span><span class="who">Mohammed Irfan</span><span class="meta">4th year · Information Science · came from Mysuru the night before</span></span>
+            </figcaption>
+          </figure>
+          <figure class="q3">
+            <blockquote>— The part I still use is the question about what the visitor should do next. I ask it before I add another card.</blockquote>
+            <figcaption>
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="" />
+              <span><span class="who">Sneha Iyer</span><span class="meta">2nd year, design</span></span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <p class="faq-note">Answers are below. Please read all of them before you write to the team, because the same questions come in every week and the organising group is small.</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q">
+              <p>Who can register?</p>
+              <button class="faq-toggle i1" type="button" aria-expanded="true">+</button>
+            </div>
+            <p class="faq-a a1" hidden>Students of any college who have built at least one website with HTML and CSS. A few seats are usually taken by students from outside Bengaluru. Working professionals can write to us, but the examples assume a student day.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <p>Is there a fee?</p>
+              <button class="faq-toggle i2" type="button" aria-expanded="true">▼</button>
+            </div>
+            <p class="faq-a a2" hidden>Yes. ₹499 at the desk on the morning, by cash or UPI. That covers lunch and the certificate. The form keeps a place in the queue only until the hall reaches 40 paid seats. If we are full, we email you.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <p>Do I need a laptop?</p>
+              <button class="faq-toggle i3" type="button" aria-expanded="true" data-open="v" data-closed="&gt;">&gt;</button>
+            </div>
+            <p class="faq-a a3" hidden>Yes. Bring it charged, with a current browser. A tablet is not enough for the afternoon challenge. You may borrow a laptop, but each person submits their own screenshot.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <p>Will I get a certificate?</p>
+              <button class="faq-toggle i4" type="button" aria-expanded="true">…</button>
+            </div>
+            <p class="faq-a a4" hidden>You will if you stay through the project challenge and submit the screenshot before 4:00 PM. Leaving at lunch means we cannot issue it. The PDF is sent within three weeks to the email on this form.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <p>What should I install beforehand?</p>
+              <button class="faq-toggle i5" type="button" aria-expanded="true">open</button>
+            </div>
+            <p class="faq-a a5" hidden>A current browser. Extra tools are useful and we will not spend the morning installing them. If setup fails, you can still do the critique half of the day. Please do not arrive expecting the desk to repair a laptop.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <p>Can I get a refund?</p>
+              <button class="faq-toggle i6" type="button" aria-expanded="true" data-open="▴" data-closed="▾">▾</button>
+            </div>
+            <p class="faq-a a6" hidden>Email webcraft@aether.edu.in by 17 October and we will refund the desk fee. After that we can transfer the seat to another student once. Write their name in the email. We do not refund a missed morning.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <p>Is lunch included?</p>
+              <button class="faq-toggle i7" type="button" aria-expanded="true">•</button>
+            </div>
+            <p class="faq-a a7" hidden>Yes. It is vegetarian, with an egg option if you say so when you pay at the desk. Tea is at 11:15 and 15:15. The cafeteria is open if you want something else, and outside food is better kept out of the hall.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="foot">
+        <div class="f-logo">
+          <a href="#home"><span class="f-mark">W</span> WebCraft</a>
+          <p>Department of Computer Science<br />Aether Institute of Technology</p>
+        </div>
+        <div class="f-links">
+          <h2>Quick Links</h2>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="f-contact">
+          <h2>CONTACT</h2>
+          <p class="mail">webcraft@aether.edu.in</p>
+          <p class="phone">+91 80 4123 7780</p>
+          <p class="addr">Seminar Hall 2, 18 Lakeview Road, Bengaluru 560001</p>
+        </div>
+        <div class="f-social">
+          <h2>Social Media</h2>
+          <div class="row">
+            <a class="ig" href="https://www.instagram.com">Ig</a>
+            <a class="li" href="https://www.linkedin.com">LinkedIn</a>
+            <a class="ghb" href="https://github.com">GH</a>
+          </div>
+        </div>
+        <div class="f-news">
+          <h2>Newsletter</h2>
+          <p>Occasional notes about the next date. No weekly mail.</p>
+          <form id="news-form">
+            <div class="news-row">
+              <input type="text" placeholder="email" aria-label="email" />
+              <button type="submit">Go</button>
+            </div>
+          </form>
+          <p class="sent" id="news-sent" hidden>sent</p>
+        </div>
+      </div>
+      <p class="copy">© 2026 WebCraft · Aether Institute of Technology · For classroom use</p>
+    </footer>
+
+    <script>
+      var form = document.getElementById("reg-form");
+      var formStatus = document.getElementById("form-status");
+      var done = document.getElementById("form-done");
+
+      document.getElementById("langs").addEventListener("click", function (event) {
+        var button = event.target.closest(".lang");
+        if (!button) return;
+        var all = document.querySelectorAll(".lang");
+        for (var i = 0; i < all.length; i++) all[i].classList.remove("on");
+        button.classList.add("on");
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var name = document.getElementById("name").value.trim();
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var confirm = document.getElementById("confirm").value;
+        var nameErr = !name;
+        var emailErr = email.indexOf("@") === -1;
+        var pwErr = password.length < 8;
+        var confirmErr = password !== confirm;
+
+        document.getElementById("name-err").hidden = !nameErr;
+        document.getElementById("pw-err").hidden = !pwErr;
+        document.getElementById("confirm-err").hidden = !confirmErr;
+        document.getElementById("email").classList.toggle("bad", emailErr);
+        done.hidden = true;
+
+        if (nameErr || emailErr || pwErr || confirmErr) {
+          formStatus.hidden = false;
+          formStatus.textContent = "check fields";
+          return;
+        }
+
+        formStatus.hidden = true;
+        form.reset();
+        var langs = document.querySelectorAll(".lang");
+        for (var i = 0; i < langs.length; i++) {
+          langs[i].classList.toggle("on", langs[i].getAttribute("data-lang") === "Python");
+        }
+        done.hidden = false;
+      });
+
+      document.getElementById("reset-btn").addEventListener("click", function () {
+        formStatus.hidden = true;
+        done.hidden = true;
+        document.getElementById("name-err").hidden = true;
+        document.getElementById("pw-err").hidden = true;
+        document.getElementById("confirm-err").hidden = true;
+        document.getElementById("email").classList.remove("bad");
+        var langs = document.querySelectorAll(".lang");
+        for (var i = 0; i < langs.length; i++) {
+          langs[i].classList.toggle("on", langs[i].getAttribute("data-lang") === "Python");
+        }
+      });
+
+      var toggles = document.querySelectorAll(".faq-toggle");
+      for (var t = 0; t < toggles.length; t++) {
+        toggles[t].addEventListener("click", function () {
+          var item = this.parentNode.parentNode;
+          var answer = item.querySelector(".faq-a");
+          var open = answer.hidden;
+          answer.hidden = !open;
+          this.setAttribute("aria-expanded", open ? "false" : "true");
+          if (this.getAttribute("data-open")) {
+            this.textContent = open ? this.getAttribute("data-open") : this.getAttribute("data-closed");
+          }
+        });
+      }
+
+      document.getElementById("news-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        this.reset();
+        document.getElementById("news-sent").hidden = false;
+      });
+    </script>
+  </body>
+</html>
